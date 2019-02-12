@@ -2,7 +2,6 @@ import React from 'react'
 import {Row, Col} from 'react-bootstrap'
 import {Card, Button, Container, FormControl, NavbarWithLogo} from '../components'
 import {TrackingAPI} from '../api/trackingApi'
-import queryString from 'query-string'
 import Tracking from './Tracking'
 
 export default class PublicTrackingUI extends React.Component {
@@ -12,9 +11,9 @@ export default class PublicTrackingUI extends React.Component {
   }
 
   componentDidMount() {
-    const queries = queryString.parse(window.location.search)
-    if (Object.keys(queries).length) {
-      this.trackingInput.value = queries.numbers.replace(' ', '')
+    const trackingNumbers = window.location.pathname.split('/')[1]
+    if (trackingNumbers.length) {
+      this.trackingInput.value = trackingNumbers.replace(' ', '')
       this.loadTrackings()
     }
   }
@@ -22,6 +21,7 @@ export default class PublicTrackingUI extends React.Component {
   async loadTrackings() {
     this.setState({loading: true})
     const trackingNos = this.trackingInput.value.replace(' ', '').split(',')
+    window.history.replaceState(null, '', trackingNos)
     const data = await TrackingAPI.getTrackingData(trackingNos)
     this.setState({loading: false, data})
   }
