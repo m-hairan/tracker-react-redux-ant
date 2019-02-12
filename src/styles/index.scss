@@ -1,0 +1,203 @@
+@import './colors';
+@import './tags-input.scss';
+@import './sidepane.scss';
+@import './filter-badge.scss';
+@import './pagiantion.scss';
+@import './tracking.scss';
+
+@font-face {
+	font-family: "SFUIText";
+  src: url("../assets/fonts/SFUIText-Regular.eot") format("eot"),
+       url("../assets/fonts/SFUIText-Regular.ttf") format("truetype"),
+       url("../assets/fonts/SFUIText-Regular.woff") format("woff"),
+       url("../assets/fonts/SFUIText-Regular.otf") format("otf");
+}
+
+@font-face {
+	font-family: "SFUIText";
+  src: url("../assets/fonts/SFUIText-Medium.eot") format("eot"),
+       url("../assets/fonts/SFUIText-Medium.ttf") format("truetype"),
+       url("../assets/fonts/SFUIText-Medium.woff") format("woff"),
+       url("../assets/fonts/SFUIText-Medium.otf") format("otf");
+  font-weight: 500;
+}
+
+@font-face {
+	font-family: "SFUIText";
+  src: url("../assets/fonts/SFUIText-Bold.eot") format("eot"),
+       url("../assets/fonts/SFUIText-Bold.ttf") format("truetype"),
+       url("../assets/fonts/SFUIText-Bold.woff") format("woff"),
+       url("../assets/fonts/SFUIText-Bold.otf") format("otf");
+  font-weight: bold;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: SFUIText;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f1f4f5;
+  font-size: 14px;
+}
+
+a {
+  color: #3d7dc3;
+}
+
+.page-item.active .page-link {
+  z-index: auto;
+}
+
+i.material-icons {
+  vertical-align: middle !important;
+}
+
+.dropdown-menu.show {
+  margin-top: .7rem
+}
+
+.badge {
+  padding: 10px 24px;
+}
+.badge.pill {
+  border-radius: 20px;
+}
+.badge-secondary {
+  background-color: $greyD;
+  color: $textGreyDarker;
+}
+
+@mixin dropdown-arrow {
+  position: absolute;
+  top: -7px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+}
+
+.dropdown-menu-right::before {
+  @include dropdown-arrow;
+  top: -8px;
+  left: 85%;
+  border-bottom: 7px solid #ccc;
+  border-bottom-color: rgba(0,0,0,.15);
+  content: '';
+}
+.dropdown-menu-right::after {
+  @include dropdown-arrow;
+  left: 85%;
+  border-bottom: 7px solid #ffffff;
+  content: '';
+}
+
+.f-14 { font-size: 14px !important; }
+.f-16 { font-size: 16px !important; }
+.f-18 { font-size: 18px !important; }
+.f-24 { font-size: 24px !important; }
+.f-32 { font-size: 32px !important; }
+
+.title {
+  font-size: 18px;
+  color: #595959;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f8f8f8;
+}
+.table td {
+  border: none;
+}
+tr.expanding-row > td[colspan] {
+  padding: 0
+}
+
+.dropdown-toggle-btn::after {
+  content: none;
+}
+.dropdown-toggle-btn {
+  border-radius: 50%;
+  padding: .375rem;
+  background-color: transparent;
+  border: none;
+}
+.dropdown-toggle-btn + * .dropdown-item {
+  padding: 8px;
+  font-size: 14px;
+  color: #3d7dc3;
+}
+
+.filter__container:not(:first-child) {
+  border-top: 1px solid $borderColor;
+  padding-top: 16px;
+}
+.filter__title {
+  font-size: 16px;
+  cursor: pointer;
+}
+.filter__form {
+  margin-top: 16px;
+}
+
+.react-select__control {
+  min-height: 40px !important;
+  border-radius: 0 !important;
+}
+
+.react-select-page__control {
+  min-height: 28px !important;
+  border-radius: 0 !important;
+}
+
+.form-control__custom {
+  height: 40px;
+  border-radius: 0;
+}
+
+.custom-control {
+  padding-left: 2rem;
+}
+
+.text-grey {
+  color: $textGrey;
+}
+.text-medium {
+  font-weight: 500
+}
+.text-normal {
+  color: $textGrey;
+  text-decoration: none;
+}
+.text-bold {
+  font-weight: bold;
+}
+.no-margin {
+  margin: 0;
+}
+
+.filter-applied {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid $borderColor;
+}
+
+.breadcrumb {
+  padding: 24px 3px;
+  margin: 0;
+  background-color: transparent;
+
+  .breadcrumb-item {
+    font-weight: 500;
+  }
+
+  .breadcrumb-item+.breadcrumb-item::before {
+    content: "chevron_right";
+    font-family: 'Material Icons';
+    vertical-align: middle;
+  }
+}
+
+
+.order__row.selected {
+  background-color: #d4e7fb !important;
+}

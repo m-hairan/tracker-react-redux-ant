@@ -1,0 +1,207 @@
+.tracker-timeline {
+  padding: 0;
+
+  .tracker__item {
+    list-style-type: none;
+    background-color: #f8f8f8;
+  }
+
+  .tracker__item:nth-of-type(even) {
+    background-color: #fff;
+  }
+
+  .tracker__item {
+    position: relative;
+  }
+
+  .tracker__check {
+    position: absolute;
+    color: #a6a6a6;
+    left: 17px;
+    top: 18px;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .tracker__item:nth-child(1) .tracker__check {
+    background-color: #6382e2;
+    color: #6382e2;
+  }
+
+  .tracker__wrapper {
+    display: flex;
+    padding: 16px;
+    margin-left: 28px;
+    border-left: 2px solid #c3c3c3;
+    padding-left: 50px;
+  }
+
+  .tracker__time {
+    width: 30%;
+  }
+
+  .tracker__time p {
+    margin: 0;
+    color: #5e5e5e;
+  }
+
+  .tracker__status {
+    color: #3a3a3a;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0
+  }
+
+  .tracker__text {
+    color: #5e5e5e;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .tracker__location {
+    color: #737070;
+    font-size: 12px;
+  }
+}
+
+.tracker-status-timeline {
+  display: flex;
+  padding-left: 0;
+  margin-bottom: 64px;
+  justify-content: center;
+
+  li {
+    list-style: none;
+  }
+
+  .tracker__item {
+    display: inline-block;
+    width: 120px;
+  }
+
+  .tracker__wrapper {
+    color: #bcbcbc;
+    font-weight: 500;
+    height: 120px;
+    margin-bottom: 16px;
+  }
+
+  .tracker__check {
+    position: absolute;
+    color: #bcbcbc;
+    left: 50%;
+    margin-left: -12px;
+    bottom: -12px;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .tracker__icon {
+    padding-bottom: 16px;
+    border-bottom: 2px solid #bcbcbc;
+    position: relative;
+    text-align: center;
+
+    svg {
+      fill: #bcbcbc !important;
+      width: 40px;
+      height: 40px;
+
+      * {
+        stroke: #bcbcbc !important;
+      }
+    }
+  }
+
+  .tracker__status {
+    margin-top: 18px;
+    text-align: center;
+  }
+
+  .tracker__date {
+    text-align: center;
+    padding: 6px 16px;
+    background-color: #4e6fd3;
+    color: #fff;
+    border-radius: 13px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .tracker__item.complete, .tracker__item.current.complete {
+    .tracker__status {
+      color: #1e1e1e;
+    }
+    .tracker__check {
+      color: #1fb43f;
+    }
+    .tracker__icon {
+      border-bottom: 2px solid #1fb43f;
+
+      svg {
+        fill: #1fb43f !important;
+        * {
+          stroke: #1fb43f !important;
+        }
+      }
+    }
+    .tracker__date {
+      background-color: #1fb43f;
+    }
+  }
+
+  .tracker__item.current:not(.complete) {
+    .tracker__status {
+      color: #1e1e1e;
+    }
+    .tracker__check {
+      color: #6382e2;
+      background-color: #6382e2;
+    }
+    .tracker__icon {
+      border-bottom: 2px solid #6382e2;
+
+      svg {
+        fill: #6382e2 !important;
+        * {
+          stroke: #6382e2 !important;
+        }
+      }
+    }
+  }
+
+  .tracker__item.fail.current {
+    .tracker__status {
+      color: #e91414;
+    }
+    .tracker__check {
+      color: #e91414;
+      background-color: #fff;
+
+      i.material-icons {
+        transform: rotate(45deg)
+      }
+    }
+    .tracker__icon {
+      border-bottom: 2px solid #e91414;
+
+      svg {
+        fill: #e91414 !important;
+        * {
+          stroke: #e91414 !important;
+        }
+      }
+    }
+    .tracker__date {
+      background-color: #e91414;
+    }
+  }
+}
