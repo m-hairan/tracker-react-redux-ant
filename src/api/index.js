@@ -8,7 +8,7 @@ if (window.location.href.includes('local')) {
 } else if (window.location.href.includes('demo')) {
   BASE_URL = 'https://janio-api-demo.herokuapp.com/api'  // demo
 } else {
-  BASE_URL = 'http://janio-api.herokuapp.com/api'  // production
+  BASE_URL = 'https://janio-api.herokuapp.com/api'  // production
 }
 
 // wrapped http call with authorization header
