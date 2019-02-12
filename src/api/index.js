@@ -5,10 +5,8 @@ let BASE_URL
 
 if (window.location.href.includes('local')) {
   BASE_URL = 'http://localhost:8000/api'  // local
-} else if (window.location.href.includes('demo')) {
-  BASE_URL = 'https://janio-api-demo.herokuapp.com/api'  // demo
 } else {
-  BASE_URL = 'https://janio-api.herokuapp.com/api'  // production
+  BASE_URL = 'https://janio-api-tracker.herokuapp.com/api'
 }
 
 // wrapped http call with authorization header
