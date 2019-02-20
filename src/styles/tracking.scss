@@ -28,8 +28,11 @@
   }
 
   .tracker__item:nth-child(1) .tracker__check {
-    background-color: #6382e2;
     color: #6382e2;
+  }
+
+  .tracker__item:nth-child(1) .tracker__check:not(.success) {
+    background-color: #6382e2;
   }
 
   .tracker__wrapper {

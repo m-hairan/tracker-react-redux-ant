@@ -153,7 +153,7 @@ const TrackingTable = ({data}) => (
 
         return (
           <li className="tracker__item active" key={update.update_id}>
-          <span className="tracker__check">
+          <span className={`tracker__check ${update.status === 'SUCCESS' ? 'success':''}`}>
             <i className="material-icons">check_circle</i>
           </span>
           <div className="tracker__wrapper">
