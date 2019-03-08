@@ -1,3 +1,7 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins/breakpoints";
+
 .tracker-timeline {
   padding: 0;
 
@@ -75,7 +79,7 @@
   display: flex;
   padding-left: 0;
   margin-bottom: 64px;
-  justify-content: center;
+  // justify-content: center;
 
   li {
     list-style: none;
@@ -206,5 +210,88 @@
     .tracker__date {
       background-color: #e91414;
     }
+  }
+}
+
+.tracking-form {
+  button {
+    font-weight: bold;
+  }
+}
+
+.tracking-number {
+  font-size: 34px;
+}
+
+@include media-breakpoint-up(xs) {
+  .tracking-number {
+    font-size: 16px;
+  }
+
+  .tracking-form {
+    input {
+      font-size: 14px;
+    }
+    button {
+      margin-left: 0;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .tracker-status-timeline {
+    margin-bottom: 32px;
+
+    .tracker__wrapper {
+      margin-bottom: 0;
+    }
+    .tracker__status {
+      font-size: 12px;
+    }
+    .tracker__item {
+      &.swiper-slide-prev::before, &.swiper-slide-next::before {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+      }
+      &.swiper-slide-prev::before {
+        background: linear-gradient(to left, rgba(255,255,255,0), rgba(255, 255, 255, 1));
+      }
+      &.swiper-slide-next::before {
+        background: linear-gradient(to right, rgba(255,255,255,0), rgba(255, 255, 255, 1));
+      }
+    }
+    .tracker__date {
+      font-size: 10px;
+      padding: 6px;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .tracker-status-timeline {
+    justify-content: center;
+  }
+}
+
+
+
+.tracker__item.swiper-slide {
+  .tracker__status {
+    display: none;
+  }
+}
+.tracker__item.swiper-slide-active {
+  .tracker__status {
+    display: block;
+  }
+}
+.tracker__item:not(.swiper-slide-active) {
+  .tracker__date {
+    visibility: hidden;
   }
 }

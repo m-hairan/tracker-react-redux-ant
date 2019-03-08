@@ -71,12 +71,12 @@ export default class PublicTrackingUI extends React.Component {
             <h1 className='text-grey f-16'>Input Your Tracking Number</h1>
 
             <Card border style={{marginBottom: 24}}>
-              <form onSubmit={this.handleSubmit.bind(this)}>
-              <div style={styles.cardBody}>
-                  <FormControl ref={el => this.trackingInput = el} required={true} />
-                  <Button
-                    variant='primary' size='lg' style={{marginLeft: 16}}
-                    type="submit">Track Deliveries</Button>
+              <form onSubmit={this.handleSubmit.bind(this)} className='tracking-form'>
+              <div style={styles.cardBody} className='d-flex flex-sm-row flex-column'>
+                <FormControl ref={el => this.trackingInput = el} required={true} />
+                <Button
+                  variant='primary' size='lg'
+                  type="submit">Track Deliveries</Button>
               </div>
               </form>
             </Card>
@@ -93,5 +93,5 @@ export default class PublicTrackingUI extends React.Component {
 
 const styles = {
   container: {paddingBottom: 64},
-  cardBody: {display: 'flex', padding: 12}
+  cardBody: {padding: 12}
 }

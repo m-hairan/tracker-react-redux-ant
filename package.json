@@ -11,6 +11,7 @@
     "react": "^16.8.1",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.1",
+    "react-id-swiper": "^1.6.9",
     "react-scripts": "2.1.5",
     "react-svg": "^7.2.6",
     "styled-components": "^4.1.3"

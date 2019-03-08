@@ -1,8 +1,11 @@
 import React from 'react'
-
 import ReactSVG from 'react-svg'
+import Swiper from 'react-id-swiper'
+
 import {Card} from '../components'
 import {getDateTimeArray} from '../utils'
+
+require('swiper/dist/css/swiper.min.css')
 
 const statusMapping = {
   ORDER_INFO_RECEIVED: {
@@ -82,6 +85,7 @@ const TrackingStatusTimeline = ({data}) => {
   const failFor = statusFromMapping.failFor
   
   let icons = []
+  let currentIndex = 0
 
   if (failFor) {
     lastStatus = failFor
@@ -96,10 +100,12 @@ const TrackingStatusTimeline = ({data}) => {
       if (failFor) {
         statusClass = 'current fail'
       }
+      currentIndex = status
     }
 
     if (status === 'SUCCESS' && lastStatus === 'SUCCESS') {
       statusClass = 'current complete'
+      currentIndex = status
     }
 
     if (!statusMapping[status].failFor) {
@@ -133,10 +139,25 @@ const TrackingStatusTimeline = ({data}) => {
     }
   }
 
+  const params = {
+    slidesPerView: 2.75,
+    centeredSlides: true,
+    activeSlideKey: currentIndex,
+  }
+
   return (
-    <ul className="tracker-status-timeline">
+    <>
+    <div className='d-none d-sm-block'>
+      <ul className='tracker-status-timeline'>
+        {icons}
+      </ul>
+    </div>
+    <div className='d-block d-sm-none'>
+    <Swiper WrapperEl='ul' wrapperClass='tracker-status-timeline' {...params}>
       {icons}
-    </ul>
+    </Swiper>
+    </div>
+    </>
   )
 }
 
@@ -197,7 +218,7 @@ class Tracking extends React.Component {
         <div style={{padding: 32}}>
           <div style={{textAlign: 'center', marginBottom: 32}}>
             <p className='f-16 text-normal no-margin'>Tracking Number</p>
-            <h1 className='f-34 text-bold no-margin'>{trackingNo}</h1>
+            <h1 className='text-bold no-margin tracking-number'>{trackingNo}</h1>
           </div>
 
           <TrackingStatusTimeline data={data} />
