@@ -1,6 +1,6 @@
 import React from 'react'
 import {Row, Col} from 'react-bootstrap'
-import {Card, Button, Container, FormControl, NavbarWithLogo, Textarea} from '../components'
+import {Card, Button, Container, NavbarWithLogo, Textarea} from '../components'
 import {TrackingAPI} from '../api/trackingApi'
 import Tracking from './Tracking'
 import { LoadingScreen } from '../components/Loading'
@@ -14,8 +14,9 @@ export default class PublicTrackingUI extends React.Component {
 
   componentDidMount() {
     const trackingNumbers = window.location.pathname.split('/')[1]
+    console.log(trackingNumbers)
     if (trackingNumbers.length) {
-      this.trackingInput.value = trackingNumbers.replace(' ', '')
+      this.trackingInput.value = trackingNumbers.match(/[A-Za-z0-9-]+/g).join(', ')
       this.loadTrackings()
     }
   }
