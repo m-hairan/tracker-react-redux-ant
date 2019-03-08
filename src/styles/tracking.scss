@@ -2,6 +2,11 @@
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins/breakpoints";
 
+.tracker-timeline-wrapper {
+  padding: 24px 72px;
+  border-top: 1px solid #c3c3c3;
+}
+
 .tracker-timeline {
   padding: 0;
 
@@ -40,7 +45,6 @@
   }
 
   .tracker__wrapper {
-    display: flex;
     padding: 16px;
     margin-left: 28px;
     border-left: 2px solid #c3c3c3;
@@ -224,6 +228,24 @@
 }
 
 @include media-breakpoint-up(xs) {
+  .tracker-timeline-wrapper {
+    padding: 0;
+
+    .tracker__wrapper {
+      padding-left: 32px;
+    }
+
+    .tracker__time {
+      width: 100%;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+  
+    .tracker__time p {
+      display: inline;
+    }
+  }
+  
   .tracking-number {
     font-size: 16px;
   }

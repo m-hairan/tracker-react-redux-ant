@@ -162,8 +162,8 @@ const TrackingStatusTimeline = ({data}) => {
 }
 
 const TrackingTable = ({data}) => (
-  <div style={{padding: '24px 72px', borderTop: '1px solid #c3c3c3'}}>
-    <div style={{display: 'flex', paddingLeft: 80}}>
+  <div className='tracker-timeline-wrapper'>
+    <div className='d-none d-md-flex' style={{paddingLeft: 80}}>
       <p style={{width: '30%'}}>Time</p>
       <p>Shipment Status</p>
     </div>
@@ -177,7 +177,7 @@ const TrackingTable = ({data}) => (
           <span className={`tracker__check ${update.status === 'SUCCESS' ? 'success':''}`}>
             <i className="material-icons">check_circle</i>
           </span>
-          <div className="tracker__wrapper">
+          <div className="tracker__wrapper d-flex flex-sm-row flex-column">
             <div className="tracker__time">
               <p className="tracker__time--date">{date[0]}</p>
               <p className="tracker__time--time">{date[1]}</p>
