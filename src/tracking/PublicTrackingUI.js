@@ -14,7 +14,6 @@ export default class PublicTrackingUI extends React.Component {
 
   componentDidMount() {
     const trackingNumbers = window.location.pathname.split('/')[1]
-    console.log(trackingNumbers)
     if (trackingNumbers.length) {
       this.trackingInput.value = trackingNumbers.match(/[A-Za-z0-9-]+/g).join(', ')
       this.loadTrackings()
