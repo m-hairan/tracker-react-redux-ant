@@ -3,6 +3,7 @@ import {Row, Col} from 'react-bootstrap'
 import {Card, Button, Container, FormControl, NavbarWithLogo} from '../components'
 import {TrackingAPI} from '../api/trackingApi'
 import Tracking from './Tracking'
+import { LoadingScreen } from '../components/Loading';
 
 export default class PublicTrackingUI extends React.Component {
   state = {
@@ -34,7 +35,10 @@ export default class PublicTrackingUI extends React.Component {
   render() {
     let trackings
     if (this.state.loading) {
-      trackings = <p>Loading...</p>
+      trackings = <div style={{
+        position: 'relative',
+        marginTop: '4rem'
+      }}><LoadingScreen /></div>
     } else if (this.state.data) {
       trackings = []
       for (let trackingNo in this.state.data) {
@@ -48,11 +52,11 @@ export default class PublicTrackingUI extends React.Component {
               <div style={{padding: 32}}>
                 <div style={{textAlign: 'center', marginBottom: 32}}>
                   <p className='f-16 text-normal no-margin'>Tracking Number</p>
-                  <h1 className='f-34 text-bold no-margin'>{trackingNo}</h1>
+                  <h1 className='tracking-number text-bold no-margin'>{trackingNo}</h1>
                 </div>
 
                 <div>
-                  <h2 className='f-18' style={{textAlign: 'center'}}>No data</h2>
+                  <h2 className='text-center'>No data</h2>
                 </div>
               </div>
             </Card>

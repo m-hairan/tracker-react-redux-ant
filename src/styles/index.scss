@@ -201,3 +201,10 @@ tr.expanding-row > td[colspan] {
 .order__row.selected {
   background-color: #d4e7fb !important;
 }
+
+.center-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
