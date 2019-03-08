@@ -220,6 +220,7 @@
 .tracking-form {
   button {
     font-weight: bold;
+    margin-left: 16px;
   }
 }
 
@@ -227,7 +228,7 @@
   font-size: 34px;
 }
 
-@include media-breakpoint-up(xs) {
+@include media-breakpoint-only(xs) {
   .tracker-timeline-wrapper {
     padding: 0;
 
@@ -258,6 +259,7 @@
       margin-left: 0;
       margin-top: 10px;
       font-size: 14px;
+      width: 100%;
     }
   }
 
@@ -294,7 +296,7 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
   .tracker-status-timeline {
     justify-content: center;
   }

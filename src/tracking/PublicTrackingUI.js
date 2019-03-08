@@ -1,9 +1,10 @@
 import React from 'react'
 import {Row, Col} from 'react-bootstrap'
-import {Card, Button, Container, FormControl, NavbarWithLogo} from '../components'
+import {Card, Button, Container, FormControl, NavbarWithLogo, Textarea} from '../components'
 import {TrackingAPI} from '../api/trackingApi'
 import Tracking from './Tracking'
-import { LoadingScreen } from '../components/Loading';
+import { LoadingScreen } from '../components/Loading'
+// import Textarea from 'react-textarea-autosize'
 
 export default class PublicTrackingUI extends React.Component {
   state = {
@@ -21,7 +22,7 @@ export default class PublicTrackingUI extends React.Component {
 
   async loadTrackings() {
     this.setState({loading: true})
-    const trackingNos = this.trackingInput.value.replace(' ', '').split(',')
+    const trackingNos = this.trackingInput.value.match(/[A-Za-z0-9-]+/g)
     window.history.replaceState(null, '', trackingNos)
     const data = await TrackingAPI.getTrackingData(trackingNos)
     this.setState({loading: false, data})
@@ -77,10 +78,13 @@ export default class PublicTrackingUI extends React.Component {
             <Card border style={{marginBottom: 24}}>
               <form onSubmit={this.handleSubmit.bind(this)} className='tracking-form'>
               <div style={styles.cardBody} className='d-flex flex-sm-row flex-column'>
-                <FormControl ref={el => this.trackingInput = el} required={true} />
-                <Button
-                  variant='primary' size='lg'
-                  type="submit">Track Deliveries</Button>
+                {/* <FormControl ref={el => this.trackingInput = el} required={true} /> */}
+                <Textarea className='form-control' inputRef={el => this.trackingInput = el} required={true} />
+                <div>
+                  <Button
+                    variant='primary' size='lg'
+                    type="submit">Track Deliveries</Button>
+                </div>
               </div>
               </form>
             </Card>
