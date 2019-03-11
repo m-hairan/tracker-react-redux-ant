@@ -3,7 +3,7 @@ import ReactSVG from 'react-svg'
 import Swiper from 'react-id-swiper'
 
 import {Card} from '../components'
-import {getDateTimeArray} from '../utils'
+import {getDateTimeArray, capitalizeUnderscore} from '../utils'
 
 require('swiper/dist/css/swiper.min.css')
 
@@ -185,7 +185,7 @@ const TrackingTable = ({data}) => (
   
             <div style={{width: '100%'}}>
               <div className="tracker__description">
-                <p className="tracker__status">{update.status}</p>
+                <p className="tracker__status">{capitalizeUnderscore(update.status)}</p>
                 <p className="tracker__text">{update.main_text}</p>
               </div>
               {update.destination_country &&

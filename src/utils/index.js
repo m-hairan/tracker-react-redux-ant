@@ -8,3 +8,16 @@ export const getDateTimeArray = (string) => {
   const time = dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
   return [date, time]
 }
+
+export const titleize = (str) => {
+  if (typeof str !== 'string') {
+		throw new TypeError('Expected a string');
+	}
+
+	return str.toLowerCase().replace(/(?:^|\s|-)\S/g, x => x.toUpperCase());
+}
+
+export const capitalizeUnderscore = (string) => {
+    const removeUndercore = string.split('_').join(' ')
+    return titleize(removeUndercore)
+}
