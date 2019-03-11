@@ -77,12 +77,13 @@ export default class PublicTrackingUI extends React.Component {
 
             <Card border style={{marginBottom: 24}}>
               <form onSubmit={this.handleSubmit.bind(this)} className='tracking-form'>
-              <div style={styles.cardBody} className='d-flex flex-sm-row flex-column'>
+              <div style={styles.cardBody} className='d-flex flex-sm-row flex-column align-items-md-center'>
                 {/* <FormControl ref={el => this.trackingInput = el} required={true} /> */}
                 <Textarea className='form-control' inputRef={el => this.trackingInput = el} required={true} />
                 <div>
                   <Button
                     variant='primary' size='lg'
+                    disabled={this.state.loading}
                     type="submit">Track Deliveries</Button>
                 </div>
               </div>
