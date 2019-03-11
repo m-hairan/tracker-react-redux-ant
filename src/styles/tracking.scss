@@ -21,6 +21,15 @@
 
   .tracker__item {
     position: relative;
+
+    &.complete {
+      .tracker__check {
+        color: #1fb43f !important;
+      }
+      .tracker__wrapper {
+        border-left-color: #1fb43f !important;
+      }
+    }
   }
 
   .tracker__check {

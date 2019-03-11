@@ -168,12 +168,15 @@ const TrackingTable = ({data}) => (
       <p>Shipment Status</p>
     </div>
     <ul className="tracker-timeline">
-      {data.map(update => {
+      {data.map((update, index) => {
         const date = getDateTimeArray(update.updated_on)
-        console.log(update.updated_on)
+        let classes = ''
+        if (index !== 0 || update.status === 'SUCCESS') {
+          classes = 'complete'
+        }
 
         return (
-          <li className="tracker__item active" key={update.update_id}>
+          <li className={`tracker__item active ${classes}`} key={update.update_id}>
           <span className={`tracker__check ${update.status === 'SUCCESS' ? 'success':''}`}>
             <i className="material-icons">check_circle</i>
           </span>
