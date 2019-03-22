@@ -73,18 +73,19 @@ export default class PublicTrackingUI extends React.Component {
       <Container style={styles.container}>
         <Row>
           <Col md={{ span: 10, offset: 1 }} xs={12}>
-            <h1 className='text-grey f-16'>Input Your Tracking Number</h1>
+            <h1 className='text-grey f-16'>Input Your Tracking Numbers</h1>
 
             <Card border style={{marginBottom: 24}}>
               <form onSubmit={this.handleSubmit.bind(this)} className='tracking-form'>
               <div style={styles.cardBody} className='d-flex flex-sm-row flex-column align-items-md-center'>
                 {/* <FormControl ref={el => this.trackingInput = el} required={true} /> */}
-                <Textarea className='form-control' inputRef={el => this.trackingInput = el} required={true} />
+                <Textarea className='form-control' inputRef={el => this.trackingInput = el} required={true}
+                 placeholder='TRACKINGNUMBER1, TRACKINGNUMBER2' />
                 <div>
                   <Button
                     variant='primary' size='lg'
                     disabled={this.state.loading}
-                    type="submit">Track Deliveries</Button>
+                    type="submit">Track Shipments</Button>
                 </div>
               </div>
               </form>
