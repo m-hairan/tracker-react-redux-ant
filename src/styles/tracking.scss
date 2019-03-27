@@ -61,19 +61,25 @@
   }
 
   .tracker__time {
-    width: 30%;
+    flex: 1;
+  }
+  .tracker__shipment-status {
+    flex: 2;
   }
 
-  .tracker__time p {
-    margin: 0;
-    color: #5e5e5e;
+  .tracker__time {
+    .tracker__time--date, .tracker__time--time {
+      margin: 0;
+      color: #5e5e5e;
+    }
   }
 
   .tracker__status {
     color: #3a3a3a;
     font-size: 15px;
     font-weight: 500;
-    margin: 0
+    margin: 0;
+    margin-bottom: .5rem;
   }
 
   .tracker__text {
@@ -304,28 +310,31 @@
       padding: 6px;
     }
   }
+
+  .tracker__item:not(.swiper-slide-active) {
+    .tracker__date {
+      visibility: hidden;
+    }
+  }
+
+  .tracker__item.swiper-slide {
+    .tracker__status {
+      display: none;
+    }
+  }
+  .tracker__item.swiper-slide-active {
+    .tracker__status {
+      display: block;
+    }
+  }
 }
 
 @include media-breakpoint-up(md) {
   .tracker-status-timeline {
     justify-content: center;
   }
-}
 
-
-
-.tracker__item.swiper-slide {
-  .tracker__status {
-    display: none;
-  }
-}
-.tracker__item.swiper-slide-active {
-  .tracker__status {
-    display: block;
-  }
-}
-.tracker__item:not(.swiper-slide-active) {
-  .tracker__date {
-    visibility: hidden;
+  .tracker__shipment-status {
+    padding-left: 24px;
   }
 }

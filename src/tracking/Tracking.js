@@ -163,9 +163,9 @@ const TrackingStatusTimeline = ({data}) => {
 
 const TrackingTable = ({data}) => (
   <div className='tracker-timeline-wrapper'>
-    <div className='d-none d-md-flex' style={{paddingLeft: 80}}>
-      <p style={{width: '30%'}}>Time</p>
-      <p>Shipment Status</p>
+    <div className='d-none d-md-flex'>
+      <p style={{flex: 1, paddingLeft: 50, marginLeft: 28}}>Time</p>
+      <p style={{flex: 2, paddingLeft: 18}}>Shipment Status</p>
     </div>
     <ul className="tracker-timeline">
       {data.map((update, index) => {
@@ -182,18 +182,21 @@ const TrackingTable = ({data}) => (
           </span>
           <div className="tracker__wrapper d-flex flex-sm-row flex-column">
             <div className="tracker__time">
+              <div>
+                <p className="tracker__status">{capitalizeUnderscore(update.status)}</p>
+              </div>
               <p className="tracker__time--date">{date[0]}</p>
               <p className="tracker__time--time">{date[1]}</p>
             </div>
   
-            <div style={{width: '100%'}}>
+            <div className="tracker__shipment-status">
               <div className="tracker__description">
-                <p className="tracker__status">{capitalizeUnderscore(update.status)}</p>
                 <p className="tracker__text">{update.main_text}</p>
+                <p className="tracker__text">{update.detail_text}</p>
               </div>
-              {update.destination_country &&
+              {(update.address || update.destination_country) &&
               <div className="tracker__location">
-                <span>Location: {update.destination_country}</span>
+                <span>Location: {update.address && update.address + ','} {update.destination_country}</span>
               </div>}
             </div>
           </div>
