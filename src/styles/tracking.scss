@@ -258,8 +258,14 @@
       font-size: 13px;
     }
   
-    .tracker__time p {
-      display: inline;
+    .tracker__time {
+      p {
+        display: inline;
+      }
+
+      .tracker__time--time {
+        margin-left: 8px;
+      }
     }
   }
   
