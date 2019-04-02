@@ -175,6 +175,8 @@ const TrackingTable = ({data}) => (
           classes = 'complete'
         }
 
+        const location = [...new Set([update.address, update.destination_country])].filter(Boolean).join(', ')
+
         return (
           <li className={`tracker__item active ${classes}`} key={update.update_id}>
           <span className={`tracker__check ${update.status === 'SUCCESS' ? 'success':''}`}>
@@ -196,7 +198,7 @@ const TrackingTable = ({data}) => (
               </div>
               {(update.address || update.destination_country) &&
               <div className="tracker__location">
-                <span>Location: {update.address && update.address + ','} {update.destination_country}</span>
+                <span>Location: {location}</span>
               </div>}
             </div>
           </div>
