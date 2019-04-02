@@ -112,7 +112,7 @@
   .tracker__wrapper {
     color: #bcbcbc;
     font-weight: 500;
-    height: 120px;
+    min-height: 120px;
     margin-bottom: 16px;
   }
 
@@ -223,6 +223,7 @@
         fill: #e91414 !important;
         * {
           stroke: #e91414 !important;
+          color: #e91414 !important
         }
       }
     }

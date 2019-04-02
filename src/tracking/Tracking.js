@@ -1,148 +1,65 @@
 import React from 'react'
-import ReactSVG from 'react-svg'
 import Swiper from 'react-id-swiper'
 
 import {Card} from '../components'
 import {getDateTimeArray, capitalizeUnderscore} from '../utils'
+import { getTrackingList, defaultErrorIcon } from './statuses'
 
 require('swiper/dist/css/swiper.min.css')
 
-const statusMapping = {
-  ORDER_INFO_RECEIVED: {
-    label: 'Info Received',
-    i: 0,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/file.svg')} />)
-  },
-  ORDER_PICKED_UP: {
-    label: 'Picked Up',
-    i: 1,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/box.svg')} />)
-  },
-  ORDER_RECEIVED_AT_LOCAL_SORTING_CENTER: {
-    label: 'Local Sorting Center',
-    i: 2,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/storage.svg')} />)
-  },
-  ORDER_RECEIVED_BY_AIRLINE: {
-    label: 'Airline',
-    i: 3,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/airline.svg')} />)
-  },
-  PENDING_CUSTOMS_CLEARANCE: {
-    label: 'Customs Clearance',
-    i: 4,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/clearance.svg')} />)
-  },
-  ORDER_RECEIVED_AT_DESTINATION_WAREHOUSE: {
-    label: 'Destination Warehouse',
-    i: 5,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/warehouse.svg')} />)
-  },
-  DELIVERY_IN_PROGRESS: {
-    label: 'Delivery in Progress',
-    i: 6,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/delivery.svg')} />)
-  },
-  SUCCESS: {
-    label: 'Success',
-    i: 7,
-    icon: () => (<ReactSVG src={require('../assets/img/icons/delivery-success.svg')} />)
-  },
-  FAILED_DUE_TO_WRONG_ADDRESS: {
-    failFor: 'SUCCESS'
-  },
-  FAILED_DUE_TO_CUSTOMER_UNCONTACTABLE: {
-    failFor: 'SUCCESS'
-  },
-  FAILED_DUE_TO_CUSTOMER_REJECT_ORDER: {
-    failFor: 'SUCCESS'
-  },
-  RETURNED_TO_LOCAL_SORTING_CENTER: {
-    failFor: 'ORDER_RECEIVED_AT_LOCAL_SORTING_CENTER'
-  },
-  RETURNED_TO_DESTINATION_WAREHOUSE: {
-    failFor: 'ORDER_RECEIVED_AT_DESTINATION_WAREHOUSE'
-  },
-  WITH_CUSTOMER_SERVICE: {
-    failFor: 'DELIVERY_IN_PROGRESS'
-  },
-  DESTROYED_AT_DESTINATION_WAREHOUSE: {
-    failFor: 'ORDER_RECEIVED_AT_DESTINATION_WAREHOUSE'
-  },
-  CANCELLED_BY_CUSTOMER: {
-    failFor: 'SUCCESS'
-  },
-  RETURNED_TO_CLIENT: {
-    failFor: 'SUCCESS'
-  }
-}
-
 const TrackingStatusTimeline = ({data}) => {
-  let lastStatus = data[0].status
+  const trackingListIcons = getTrackingList(data)
 
   const date = getDateTimeArray(data[0].updated_on)[0]
-  const statusFromMapping = statusMapping[lastStatus]
-  const failFor = statusFromMapping.failFor
   
   let icons = []
-  let currentIndex = 0
 
-  if (failFor) {
-    lastStatus = failFor
-  }
-  
-  for (let status in statusMapping) {
+  trackingListIcons.forEach((status, index) => {
     let statusClass = ''
-    if (statusMapping[lastStatus].i > statusMapping[status].i) {
-      statusClass = 'complete'
-    } else if (lastStatus === status) {      
+    if (index === trackingListIcons.length - 1) { // last loop
       statusClass = 'current'
-      if (failFor) {
-        statusClass = 'current fail'
+
+      if (status.isStatusFail) {
+        statusClass += ' fail'
       }
-      currentIndex = status
+      if (status.status === 'SUCCESS') {
+        statusClass += ' complete'
+      }
+    } else {
+      statusClass = 'complete'
     }
 
-    if (status === 'SUCCESS' && lastStatus === 'SUCCESS') {
-      statusClass = 'current complete'
-      currentIndex = status
-    }
-
-    if (!statusMapping[status].failFor) {
-      icons.push(
-        <li className={`tracker__item ${statusClass}`} key={status}>
-          <div className="tracker__wrapper">
-            <div className="tracker__icon">
-              <span className="tracker__check">
-                {statusClass.includes('fail') ? 
-                <i className="material-icons">add_circle</i>:
-                <i className="material-icons">check_circle</i>}
-              </span>
-              {statusMapping[status].icon()}
-            </div>
-            <div className="tracker__status">
-              <span>{statusMapping[status].label}</span>
-            </div>
+    const icon = status.icon ? status.icon() : defaultErrorIcon()
+    const label = status.label ? status.label : capitalizeUnderscore(status.status)
+    icons.push(
+      <li className={`tracker__item ${statusClass}`} key={status.status}>
+        <div className="tracker__wrapper">
+          <div className="tracker__icon">
+            <span className="tracker__check">
+              {statusClass.includes('fail') ? 
+              <i className="material-icons">add_circle</i>:
+              <i className="material-icons">check_circle</i>}
+            </span>
+            {icon}
           </div>
+          <div className="tracker__status">
+            <span>{label}</span>
+          </div>
+        </div>
 
-          {statusClass.includes('current') && (
-            <div className="tracker__date">
-              <span>{date}</span>
-            </div>
-          )}
-        </li>
-      )
-    }
+        {statusClass.includes('current') && (
+          <div className="tracker__date">
+            <span>{date}</span>
+          </div>
+        )}
+      </li>
+    )
+  })
 
-    if (status === failFor) {
-      break
-    }
-  }
-
-  const params = {
+  const wiperParams = {
     slidesPerView: 2.75,
     centeredSlides: true,
-    activeSlideKey: currentIndex,
+    activeSlideKey: trackingListIcons[trackingListIcons.length - 1].status,
   }
 
   return (
@@ -153,7 +70,7 @@ const TrackingStatusTimeline = ({data}) => {
       </ul>
     </div>
     <div className='d-block d-sm-none'>
-    <Swiper WrapperEl='ul' wrapperClass='tracker-status-timeline' {...params}>
+    <Swiper WrapperEl='ul' wrapperClass='tracker-status-timeline' {...wiperParams}>
       {icons}
     </Swiper>
     </div>
