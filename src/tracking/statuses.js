@@ -86,23 +86,45 @@ export const getTrackingList = updates => {
   //   "RETURNED_TO_DESTINATION_WAREHOUSE"
   // ]
   const statuses = [...new Set(updates.map(u => u.status))].reverse()
+  const lastStatus = statuses[statuses.length - 1]
+  const lastTrackerStatusIndex = TRACKER_STATUSES.findIndex(s => s.status === lastStatus)
+  const lastTrackerStatus = TRACKER_STATUSES[lastTrackerStatusIndex]
+
   const results = []
 
-  statuses.forEach((status, index) => {
+  for (let status of statuses) {
+  // statuses.forEach((status, index) => {
     const trackerStatusIndex = TRACKER_STATUSES.findIndex(s => s.status === status)
     const trackerStatus = TRACKER_STATUSES[trackerStatusIndex]
 
     if (trackerStatus.isStatusFail) {
       results.push(trackerStatus)
+      break
     } else {
       TRACKER_STATUSES.forEach((s, i) => {
         if (i <= trackerStatusIndex) {
           const inResult = results.some(r => r.status === s.status)
-          if (!inResult) { results.push(s) }
+          if (!inResult) {
+            if (s.status === lastStatus) {
+              results.push({...s, current: true})
+            } else {
+              results.push(s)
+            }
+          }
         }
       })
     }
-  })
+  // })
+  }
+
+  if (!lastTrackerStatus.isStatusFail && lastTrackerStatus.status !== 'SUCCESS') {
+    for (let i = lastTrackerStatusIndex + 1; i <= 7; i++) {
+      const inResult = results.some(r => r.status === TRACKER_STATUSES[i].status)
+
+      const s = {...TRACKER_STATUSES[i], grey: true}
+      if (!inResult) { results.push(s) }
+    }
+  }
 
   return results
 }

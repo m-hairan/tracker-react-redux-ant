@@ -16,17 +16,23 @@ const TrackingStatusTimeline = ({data}) => {
 
   trackingListIcons.forEach((status, index) => {
     let statusClass = ''
-    if (index === trackingListIcons.length - 1) { // last loop
-      statusClass = 'current'
+    if (!status.grey) {
+      if (index === trackingListIcons.length - 1) { // last loop
+        statusClass = 'current'
 
-      if (status.isStatusFail) {
-        statusClass += ' fail'
+        if (status.isStatusFail) {
+          statusClass += ' fail'
+        }
+        if (status.status === 'SUCCESS' && !status.grey) {
+          statusClass += ' complete'
+        }
+      } else {
+        if (status.current) {
+          statusClass = 'current'
+        } else {
+          statusClass = 'complete'
+        }
       }
-      if (status.status === 'SUCCESS') {
-        statusClass += ' complete'
-      }
-    } else {
-      statusClass = 'complete'
     }
 
     const icon = status.icon ? status.icon() : defaultErrorIcon()
