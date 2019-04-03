@@ -65,7 +65,7 @@ const TrackingStatusTimeline = ({data}) => {
   const wiperParams = {
     slidesPerView: 2.75,
     centeredSlides: true,
-    activeSlideKey: trackingListIcons[trackingListIcons.length - 1].status,
+    activeSlideKey: data[0].status || 0,
   }
 
   return (
