@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactSVG from 'react-svg'
+import { getDateTimeArray } from '../utils';
 
 export const TRACKER_STATUSES = [
   {
@@ -78,51 +79,64 @@ export const TRACKER_STATUSES = [
   },
 ]
 
+const failStatuses = [
+  'FAILED_DUE_TO_WRONG_ADDRESS',
+  'FAILED_DUE_TO_CUSTOMER_UNCONTACTABLE',
+  'FAILED_DUE_TO_CUSTOMER_REJECT_ORDER',
+  'RETURNED_TO_LOCAL_SORTING_CENTER',
+  'RETURNED_TO_DESTINATION_WAREHOUSE',
+  'WITH_CUSTOMER_SERVICE',
+  'DESTROYED_AT_DESTINATION_WAREHOUSE',
+  'CANCELLED_BY_CUSTOMER',
+  'RETURNED_TO_CLIENT'
+]
+
 export const getTrackingList = updates => {
-  // [
-  //   "PENDING_CUSTOMS_CLEARANCE",
-  //   "ORDER_RECEIVED_AT_DESTINATION_WAREHOUSE",
-  //   "DELIVERY_IN_PROGRESS",
-  //   "RETURNED_TO_DESTINATION_WAREHOUSE"
-  // ]
-  const statuses = [...new Set(updates.map(u => u.status))].reverse()
-  const lastStatus = statuses[statuses.length - 1]
-  const lastTrackerStatusIndex = TRACKER_STATUSES.findIndex(s => s.status === lastStatus)
-  const lastTrackerStatus = TRACKER_STATUSES[lastTrackerStatusIndex]
+  let results = []
+  const statuses = [...new Set(updates.map(u => u.status))]
+  const lastStatus = statuses[0]
+  const lastStatusIndex = TRACKER_STATUSES.findIndex(s => s.status === lastStatus)
+  const lastStatusDate = getDateTimeArray(updates[0].updated_on)[0]
+  const isFail = failStatuses.includes(lastStatus)
 
-  const results = []
-
-  for (let status of statuses) {
-  // statuses.forEach((status, index) => {
-    const trackerStatusIndex = TRACKER_STATUSES.findIndex(s => s.status === status)
-    const trackerStatus = TRACKER_STATUSES[trackerStatusIndex]
-
-    if (trackerStatus.isStatusFail) {
-      results.push(trackerStatus)
-      break
-    } else {
-      TRACKER_STATUSES.forEach((s, i) => {
-        if (i <= trackerStatusIndex) {
-          const inResult = results.some(r => r.status === s.status)
-          if (!inResult) {
-            if (s.status === lastStatus) {
-              results.push({...s, current: true})
-            } else {
-              results.push(s)
-            }
-          }
-        }
-      })
-    }
-  // })
+  if (lastStatus === 'SUCCESS') {
+    TRACKER_STATUSES.slice(0, 8).forEach(s => {
+      let className = 'complete'
+      let date = null
+      if (s.status === 'SUCCESS') {
+        className = 'current complete'
+        date = lastStatusDate
+      }
+      results.push({...s, className, date})
+    })
+    return results
   }
 
-  if (!lastTrackerStatus.isStatusFail && lastTrackerStatus.status !== 'SUCCESS') {
-    for (let i = lastTrackerStatusIndex + 1; i <= 7; i++) {
-      const inResult = results.some(r => r.status === TRACKER_STATUSES[i].status)
+  const lastSuccessStatus = statuses.filter(s => !failStatuses.includes(s))[0]
+  const lastSuccessStatusIndex = TRACKER_STATUSES.findIndex(s => s.status === lastSuccessStatus)
+  for (let i=0; i < lastSuccessStatusIndex+1; i++) {
+    const trackerStatus = TRACKER_STATUSES[i]
+    let className = ''
+    let date = null
+    if (trackerStatus.status === lastSuccessStatus) {
+      className = isFail ? 'complete':'current'
+      date = isFail ? '' : lastStatusDate
+    } else {
+      className = 'complete'
+    }
 
-      const s = {...TRACKER_STATUSES[i], grey: true}
-      if (!inResult) { results.push(s) }
+    results.push({...trackerStatus, className, date})
+  }
+
+  if (isFail) {
+    results.push({
+      ...TRACKER_STATUSES[lastStatusIndex],
+      className:'current fail',
+      icon: defaultErrorIcon,
+      date: lastStatusDate})
+  } else {
+    for (let i=lastSuccessStatusIndex+1; i < 8; i++) {
+      results.push({...TRACKER_STATUSES[i], className: ''})
     }
   }
 

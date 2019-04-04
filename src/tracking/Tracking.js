@@ -3,59 +3,34 @@ import Swiper from 'react-id-swiper'
 
 import {Card} from '../components'
 import {getDateTimeArray, capitalizeUnderscore} from '../utils'
-import { getTrackingList, defaultErrorIcon } from './statuses'
+import { getTrackingList } from './statuses'
 
 require('swiper/dist/css/swiper.min.css')
 
 const TrackingStatusTimeline = ({data}) => {
   const trackingListIcons = getTrackingList(data)
-
-  const date = getDateTimeArray(data[0].updated_on)[0]
-  
   let icons = []
-
   trackingListIcons.forEach((status, index) => {
-    let statusClass = ''
-    if (!status.grey) {
-      if (index === trackingListIcons.length - 1) { // last loop
-        statusClass = 'current'
-
-        if (status.isStatusFail) {
-          statusClass += ' fail'
-        }
-        if (status.status === 'SUCCESS' && !status.grey) {
-          statusClass += ' complete'
-        }
-      } else {
-        if (status.current) {
-          statusClass = 'current'
-        } else {
-          statusClass = 'complete'
-        }
-      }
-    }
-
-    const icon = status.icon ? status.icon() : defaultErrorIcon()
     const label = status.label ? status.label : capitalizeUnderscore(status.status)
     icons.push(
-      <li className={`tracker__item ${statusClass}`} key={status.status}>
+      <li className={`tracker__item ${status.className}`} key={status.status}>
         <div className="tracker__wrapper">
           <div className="tracker__icon">
             <span className="tracker__check">
-              {statusClass.includes('fail') ? 
+              {status.className.includes('fail') ? 
               <i className="material-icons">add_circle</i>:
               <i className="material-icons">check_circle</i>}
             </span>
-            {icon}
+            {status.icon()}
           </div>
           <div className="tracker__status">
             <span>{label}</span>
           </div>
         </div>
 
-        {statusClass.includes('current') && (
+        {status.date && (
           <div className="tracker__date">
-            <span>{date}</span>
+            <span>{status.date}</span>
           </div>
         )}
       </li>
