@@ -83,7 +83,10 @@ const TrackingTable = ({data}) => (
           <div className="tracker__wrapper d-flex flex-sm-row flex-column">
             <div className="tracker__time">
               <div>
-                <p className="tracker__status">{capitalizeUnderscore(update.status)}</p>
+                <p className="tracker__status">{
+                  update.status === 'ORDER_INFO_RECEIVED' ?
+                  'Order Is Being Processed By Seller':
+                  capitalizeUnderscore(update.status)}</p>
               </div>
               <p className="tracker__time--date">{date[0]}</p>
               <p className="tracker__time--time">{date[1]}</p>

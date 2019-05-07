@@ -5,7 +5,7 @@ import { getDateTimeArray } from '../utils';
 export const TRACKER_STATUSES = [
   {
     status: 'ORDER_INFO_RECEIVED',
-    label: 'Info Received',
+    label: 'Order Is Being Processed By Seller',
     icon: () => (<ReactSVG src={require('../assets/img/icons/file.svg')} />)
   },
   {
