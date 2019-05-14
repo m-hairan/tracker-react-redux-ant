@@ -99,7 +99,7 @@ export const getTrackingList = updates => {
   const lastStatusDate = getDateTimeArray(updates[0].updated_on)[0]
   const isFail = failStatuses.includes(lastStatus)
 
-  if (statuses.includes('SUCCESS')) {
+  if (lastStatus === 'SUCCESS') {
     TRACKER_STATUSES.slice(0, 8).forEach(s => {
       let className = 'complete'
       let date = null
