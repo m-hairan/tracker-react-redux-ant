@@ -13,11 +13,11 @@ const ContactNumbers = () => {
   }
   const content = []
   for (let k in contacts) {
-    content.push(<p key={k}>{k}: {contacts[k]}</p>)
+    content.push(<p key={k} className='mb-0 text-normal text-medium'>{k}: {contacts[k]}</p>)
   }
 
   return (
-    <div className='mb-4'>
+    <div className='mb-1'>
       <a href='#/' className='text-normal text-medium'
         onClick={e => {
           e.preventDefault()
@@ -26,7 +26,7 @@ const ContactNumbers = () => {
         Contact Our Customer Service
         <i className='material-icons'>{show ? 'expand_less':'expand_more'}</i>
       </a>
-      {show && <div className='mt-2'>{content}</div>}
+      {show && <div>{content}</div>}
     </div>
   )
 }

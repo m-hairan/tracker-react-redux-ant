@@ -76,7 +76,7 @@ export default class PublicTrackingUI extends React.Component {
           <Col md={{ span: 10, offset: 1 }} xs={12}>
             <h1 className='text-grey f-16'>Input Your Tracking Numbers</h1>
 
-            <Card border style={{marginBottom: 24}}>
+            <Card border className='mb-1'>
               <form onSubmit={this.handleSubmit.bind(this)} className='tracking-form'>
               <div style={styles.cardBody} className='d-flex flex-sm-row flex-column align-items-md-center'>
                 {/* <FormControl ref={el => this.trackingInput = el} required={true} /> */}
