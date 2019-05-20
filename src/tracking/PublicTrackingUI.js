@@ -4,6 +4,7 @@ import {Card, Button, Container, NavbarWithLogo, Textarea} from '../components'
 import {TrackingAPI} from '../api/trackingApi'
 import Tracking from './Tracking'
 import { LoadingScreen } from '../components/Loading'
+import ContactNumbers from './ContactNumbers'
 // import Textarea from 'react-textarea-autosize'
 
 export default class PublicTrackingUI extends React.Component {
@@ -90,6 +91,8 @@ export default class PublicTrackingUI extends React.Component {
               </div>
               </form>
             </Card>
+
+            <ContactNumbers />
 
             {trackings}
           </Col>
