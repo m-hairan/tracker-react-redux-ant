@@ -5,11 +5,11 @@ const ContactNumbers = () => {
   const [show, setShow] = useState(false)
 
   const contacts = {
-    'Malaysia': +60162992128,
-    'Hong Kong': +85230018187,
-    'Indonesia': +6285574677773,
-    'Philippines': +6326263672,
-    'Singapore': +6583395655,
+    'Malaysia': '+60162992128',
+    'Hong Kong': '+85230018187',
+    'Indonesia': '+6285574677773',
+    'Philippines': '+6326263672',
+    'Singapore': '+6583395655',
   }
   const content = []
   for (let k in contacts) {
