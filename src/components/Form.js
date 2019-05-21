@@ -28,10 +28,8 @@ export const TextError = styled.p`
 
 export const Textarea = styled(TxtArea)`
   background-blend-mode: multiply;
-  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
   border-radius: 0;
-  border: 1px solid #b7bec5;
+  border: 1.5px solid #E6E6F3;
   padding: 12px 16px;
-  border: 1px solid #b7bec5;
   resize: none;
 `
