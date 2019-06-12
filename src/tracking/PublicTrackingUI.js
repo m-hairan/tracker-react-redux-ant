@@ -94,11 +94,12 @@ export default class PublicTrackingUI extends React.Component {
 
             <ContactNumbers />
 
-            {!this.state.data && !this.state.loading &&
+            {/* announcment message */}
+            {/* {!this.state.data && !this.state.loading &&
             <div className='d-flex flex-column justify-content-center align-items-center position-relative text-center center-screen'>
-              <p className='text-normal text-medium'>Operations in Indonesia are currently affected by the demonstrations in Jakarta, kindly expect some delays.</p>
+              <p className='text-normal text-medium'>message here</p>
             </div>
-            }
+            } */}
 
             {trackings}
           </Col>
