@@ -16,7 +16,9 @@ export const NavbarFlex = styled(NavbarBase)`
     height: 48px;
   }
 `
+
 const logo = require('../assets/img/janio-logo2.png')
+
 export const NavbarWithLogo = () => (
   <NavbarFlex shadow="true" expand="lg">
       <img src={logo} alt="Janio" />
