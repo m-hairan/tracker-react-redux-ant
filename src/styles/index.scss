@@ -42,7 +42,9 @@ body {
 }
 
 a {
-  color: #3d7dc3;
+  &:hover {
+    color: $primary;
+  }
 }
 
 .page-item.active .page-link {
@@ -207,4 +209,28 @@ tr.expanding-row > td[colspan] {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+button {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+.btn-primary {
+  background-color: $primary !important;
+  border-color: $primaryLighter;
+
+  &:hover {
+    background-color: $primary2 !important;
+  }
+  &.disabled {
+    background-color: $primaryLighter !important;
+  }
+}
+
+.form-control {
+  &:focus {
+    box-shadow: none !important;
+    border-color: $primary;
+  }
 }
