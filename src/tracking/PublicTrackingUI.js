@@ -83,16 +83,16 @@ export default class PublicTrackingUI extends React.Component {
                 <Textarea className='form-control' inputRef={el => this.trackingInput = el} required={true}
                  placeholder='TRACKINGNUMBER1, TRACKINGNUMBER2' />
                 <div>
-                  <Button
-                    variant='primary' size='lg'
+                  <button
+                    className="tracking-button btn btn-lg"
                     disabled={this.state.loading}
-                    type="submit">Track Shipments</Button>
+                    type="submit">Track Shipments</button>
                 </div>
               </div>
               </form>
             </Card>
 
-            <ContactNumbers />
+            {/* <ContactNumbers /> */}
 
             {/* announcment message */}
             {/* {!this.state.data && !this.state.loading &&

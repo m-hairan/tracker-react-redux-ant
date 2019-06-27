@@ -234,3 +234,22 @@ button {
     border-color: $primary;
   }
 }
+
+.tracking-button {
+  background-color: #fff !important;
+  border: 2px solid #1FCECA;
+  color: #1FCECA;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 0.65rem 1rem;
+}
+.tracking-button:hover {
+  background-color: #1FCECA !important;
+  color: #fff;
+}
+// tracking-button:disabled,
+// tracking-button[disabled]{
+//   border: 1px solid #999999;
+//   background-color: #cccccc;
+//   color: #666666;
+// }

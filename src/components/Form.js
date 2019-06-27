@@ -28,7 +28,7 @@ export const TextError = styled.p`
 
 export const Textarea = styled(TxtArea)`
   background-blend-mode: multiply;
-  border-radius: 0;
+  border-radius: 25px;
   border: 1.5px solid #E6E6F3;
   padding: 12px 16px;
   resize: none;
