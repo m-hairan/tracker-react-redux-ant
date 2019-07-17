@@ -100,9 +100,6 @@ export default class PublicTrackingUI extends React.Component {
               <p className='text-normal text-medium'>message here</p>
             </div>
             } */}
-            <div className='my-4 text-center'>
-              <p className='text-normal text-medium mb-0'>Kindly expect delays for deliveries going through Brunei (backlog from reopening after Hari Raya) and Vietnam (100% screening) customs.</p>
-            </div>
 
             {trackings}
           </Col>
