@@ -4,8 +4,8 @@ export const getDateTimeArray = (string) => {
   const dateTime = new Date(string)
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-  const date = `${dateTime.getDate()} ${months[dateTime.getMonth()]} ${dateTime.getFullYear()}`
-  const time = dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+  const date = `${months[dateTime.getMonth()]} ${dateTime.getDate()}, ${dateTime.getFullYear()}`
+  const time = dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).toLowerCase()
   return [date, time]
 }
 

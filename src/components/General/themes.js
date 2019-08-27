@@ -15,5 +15,11 @@ export const colors = {
   primaryLighter: '#808CC5',
   primaryLight: '#5463A7',
   primaryDark: '#23337D',
-  primaryDarker: '#122063'
+  primaryDarker: '#122063',
+
+  darkGrey: '#848484',
+  green: '#1FCECA',
+  defaultShadow: '0 1px 3px rgba(0, 0, 0, 0.16)',
+  defaultBorder: '1px solid #E8E8E8',
+  disabled: '#bdc3c7'
 }

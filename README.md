@@ -1,2 +1,0 @@
-# janio-trackerx
-Janio Trackerx

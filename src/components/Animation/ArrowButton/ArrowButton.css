@@ -1,0 +1,42 @@
+.centered {
+  float: none;
+  margin: -10px auto 0;
+}
+.centered .arrow {
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  margin-bottom: 8px;
+}
+.centered .arrow .p {
+  font-size: 30px;
+  display: block;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  opacity: 0.2;
+  transition: all .8s;
+  color: #fff;
+}
+.centered .arrow .p1 {
+  top: -5px;
+}
+.centered .arrow .p2 {
+  top: 5px;
+}
+.centered .arrow .p3 {
+  top: 15px;
+}
+.centered .arrow .p.active {
+  opacity: 1;
+}
+
+.arrow svg {
+  color: #050593 !important;
+	transform: scaleX(1.5);
+}
