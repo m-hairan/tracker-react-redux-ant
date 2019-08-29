@@ -3,6 +3,7 @@ import React from 'react'
 import {AntCard, AntInput, AntButton} from '../../components/General'
 import {ArrowButton} from '../../components/Animation'
 import {getDateTimeArray, capitalizeUnderscore} from '../../utils'
+import {SubscribeAPI} from '../../api/trackingApi'
 
 import {Icon, Tabs, Form, Alert } from 'antd'
 import { Row, Col } from 'antd';
@@ -82,6 +83,10 @@ class TrackingForm extends React.Component {
     })
   }
 
+  async subscribe(email) {
+      const data = await SubscribeAPI.subscribeEmail(this.props.trackingNo, email)
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -92,6 +97,9 @@ class TrackingForm extends React.Component {
         this.setState({
           subscribeValid: 'true'
         })
+
+        this.subscribe(values.email.toLowerCase())
+
       } else {
         this.setState({
           subscribeValid: 'false'
@@ -110,6 +118,7 @@ class TrackingForm extends React.Component {
 
     return (
       <AntCard border="true" style={{marginBottom: 24}}>
+      
           <p className='tracking-title'>Tracking Number</p>
           <h1 className='tracking-number'>{trackingNo}</h1>
 
@@ -198,9 +207,7 @@ class TrackingForm extends React.Component {
                 </Form.Item>
               </Form>
             </TabPane>
-            <TabPane className="" tab="Push Notifications" key="2">
-              Content of Tab Pane 2
-            </TabPane>
+            
           </Tabs>
         </div>}
       </AntCard>
@@ -208,6 +215,10 @@ class TrackingForm extends React.Component {
   }
 }
 
+
+// <TabPane className="" tab="Push Notifications" key="2">
+            //   Content of Tab Pane 2
+            // </TabPane>
 
 const Tracking = Form.create({ name: 'normal_login' })(TrackingForm);
 

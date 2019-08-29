@@ -14,6 +14,10 @@
   }
 }
 
+.testframe {
+  width:100%;
+  height: 300px; 
+}
 
 .bk-blue {
   background-color: #050593;
@@ -267,18 +271,19 @@ a.arrow {
     width: 100%;
 
     .ant-tabs-tab {
-      width: 50%;
+      width: 100%;
       margin: 0;
       text-align: center;
     }
 
     .ant-tabs-ink-bar {
-      width: 50% !important;
+      width: 100% !important;
     }
   }
 
   .ant-tabs {
     p.sub-title {
+      text-align: center;
       font-size: 15px;
       margin-bottom: 5px;
     }

@@ -18,3 +18,19 @@ export const TrackingAPI = {
     return data
   }
 }
+
+
+export const SubscribeAPI = {
+  subscribeEmail: async (trackingNumber, email) => {
+    const payload = {
+      email: email,
+      tracking_no: trackingNumber
+    }
+
+   const response = await http().post('/subscription/tracker-update-email-subscription/', payload)
+   const data = await response.data
+
+   console.log('1111111111111', data)
+   return data
+  }
+}
