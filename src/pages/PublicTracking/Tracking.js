@@ -152,7 +152,7 @@ class TrackingForm extends React.Component {
           </Row>
           <Row type="flex" justify="space-between">
             <Col span={10}>
-              <p className="info hidden-xs">{date[0]+' '+date[1]}</p>
+              <p className="info hidden-xs">{date[0].split(',')[0]+' at '+date[1]}</p>
               <p className="info hidden-md" style={{ paddingTop: 10}}>{date[0].split(',')[0]+' at '+date[1]}</p> 
             </Col>
             <Col span={14}>
@@ -178,37 +178,33 @@ class TrackingForm extends React.Component {
         {this.state.showDetails && <div className="subscribe mb-0">
           <p className='tracking-title  mt-0' style={{paddingTop: 0}}>
             {capitalizeUnderscore('Subscribe to delivery updates')}</p>
-          <Tabs className="" defaultActiveKey="1">
-            <TabPane tab="Email" key="1">
-              <Form onSubmit={this.handleSubmit} className="login-form">
-                <Form.Item style={{marginBottom: 0}}>
-                  <p className="sub-title">Receive delivery updates by email</p>
-                  {getFieldDecorator('email', {
-                    rules: [],
-                  })(
-                    <AntInput onChange = {this.handelInput} className={this.state.subscribeValid == 'true'?'success':(this.state.subscribeValid == 'false'?'error':'')}></AntInput>
-                  )}
-                  { this.state.subscribeValid == 'false' && <Alert className="mt-10" message="Invalid email address" type="error"  />}
-                  { this.state.subscribeValid == 'true' && <Alert className="mt-10" message="Subscribe successfully" type="success"  />}
-                </Form.Item>
-                <Form.Item>
-                  <AntButton type="primary" 
-                          className="f-23" 
-                          htmlType="submit" 
-                          size='large' 
-                          variant="green"
-                          margin="23px 0 0 0"
-                          disabled={this.state.subscribeTxt === ""}
-                          width="100%"
-                          disabledcolor="disabled"
-                          >
-                          Subscribe
-                        </AntButton>  
-                </Form.Item>
-              </Form>
-            </TabPane>
-            
-          </Tabs>
+            <Form onSubmit={this.handleSubmit} className="subscribe-row">
+              <Form.Item style={{marginBottom: 0}}>
+                <p className="email-label">Email</p>
+                <p className="sub-title">Receive delivery updates by email</p>
+                {getFieldDecorator('email', {
+                  rules: [],
+                })(
+                  <AntInput onChange = {this.handelInput} className={this.state.subscribeValid == 'true'?'success':(this.state.subscribeValid == 'false'?'error':'')}></AntInput>
+                )}
+                { this.state.subscribeValid == 'false' && <Alert className="mt-10" message="Invalid email address" type="error"  />}
+                { this.state.subscribeValid == 'true' && <Alert className="mt-10" message="Subscribe successfully" type="success"  />}
+              </Form.Item>
+              <Form.Item>
+                <AntButton type="primary" 
+                        className="f-23" 
+                        htmlType="submit" 
+                        size='large' 
+                        variant="green"
+                        margin="23px 0 0 0"
+                        disabled={this.state.subscribeTxt === ""}
+                        width="100%"
+                        disabledcolor="disabled"
+                        >
+                        Subscribe
+                      </AntButton>  
+              </Form.Item>
+            </Form>
         </div>}
       </AntCard>
     )

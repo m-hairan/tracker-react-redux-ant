@@ -263,29 +263,27 @@ a.arrow {
 .subscribe {
   margin-bottom: 30px;
 
-  .ant-tabs-nav,
-  .ant-tabs-tab-active {
+  .subscribe-row {
     font-size: 18px;
     color: #444444 !important;
     font-family: "AvenirLTStd-Heavy" !important;
     width: 100%;
+    margin-top: 20px;
 
-    .ant-tabs-tab {
-      width: 100%;
+    p.email-label {
+      font-size: 18px;
+      font-family: "AvenirLTStd-Heavy" !important;
       margin: 0;
-      text-align: center;
+      color: #212529;
+      line-height: 1.2em;
     }
 
-    .ant-tabs-ink-bar {
-      width: 100% !important;
-    }
-  }
-
-  .ant-tabs {
     p.sub-title {
-      text-align: center;
+      text-align: left;
       font-size: 15px;
-      margin-bottom: 5px;
+      margin-bottom: 0;
+      padding: 10px 0;
+      line-height: 1.2em;
     }
 
     input {
@@ -293,14 +291,13 @@ a.arrow {
     }
 
     .subscribe-button {
-      width: 100%;
-      height: 60px;
-      font-size: 23px;
-      background: #848484;
-      margin-top: 23px;
+        width: 100%;
+        height: 60px;
+        font-size: 23px;
+        background: #848484;
+        margin-top: 23px;
+      }
     }
-  }
-
 }
 
 .tracker-status-timeline {

@@ -37,7 +37,6 @@ class App extends Component {
 		            				changeLanguage={(e) => this.changeLanguage(e)} pgName={path} loaded={this.state.loaded}/>
 		        	</Header>
 		        	<Content style={styles.content} className="ant-content">
-		        		
 				    	<Switch>	
 				    		<Route path="/faq" component={FAQ} />
 					  	  	<Route path="/" render={(props) => <PublicTrackingUI {...props} path={(path) => this.setPath(path)} />} />
